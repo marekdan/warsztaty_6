@@ -2,7 +2,7 @@
 
 namespace CodersLabBundle\Controller;
 
-
+use \DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CodersLabBundle\Entity\Category;
 use CodersLabBundle\Entity\Tasks;
@@ -59,7 +59,6 @@ class TasksController extends Controller {
             $categoryRepo = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
             $category = $categoryRepo->find($categoryId);
             $task->setCategory($category);
-            $task->setDate(date('G:i:s Y-m-t'));
             $task->setStatus('todo');
 
             $em = $this->getDoctrine()->getManager();

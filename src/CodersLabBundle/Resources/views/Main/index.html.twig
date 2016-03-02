@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>
+        {% block title %}
+            Main site
+        {% endblock %}
+    </title>
+</head>
+<body>
+{% block body %}
+
+    <div class="header">
+        {% block header %}
+            <hr>
+            <a href="{{ path('mainSite') }}">MAIN SITE</a>
+            <a href="{{ path('fos_user_security_logout') }}">LOGOUT</a><br>
+            <hr>
+        {% endblock %}
+    </div>
+
+    <div class="content">
+        {% block content %}
+            content
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        {% block footer %}
+            <hr>
+            Website designed by Marek
+            <hr>
+        {% endblock %}
+    </div>
+
+{% endblock %}
+</body>
+</html>

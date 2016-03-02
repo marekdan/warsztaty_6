@@ -2,18 +2,19 @@
 
 namespace CodersLabBundle\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
-{
+class MainController extends Controller {
+
     /**
-     * @Route("/hello/{name}")
+     * @Route("/", name = "mainSite")
      * @Template()
      */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
+    public function MainSiteAction(){
+
+        return [];
     }
 }

@@ -1,0 +1,12 @@
+{% extends 'CodersLabBundle:Main:index.html.twig' %}
+
+{% block title %}
+    Edit Category
+{% endblock %}
+
+{% block content %}
+    <h1>Edit Category</h1>
+    {{ form_start(categoryForm) }}
+    {{ form_widget(categoryForm) }}
+    {{ form_end(categoryForm) }}
+{% endblock %}

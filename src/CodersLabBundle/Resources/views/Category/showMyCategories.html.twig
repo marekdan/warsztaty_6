@@ -1,0 +1,29 @@
+{% extends 'CodersLabBundle:Main:index.html.twig' %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>
+            Your Categories:
+        </h1>
+        <p>(Click on category and you will see tasks for that category)</p>
+        {% for category in categories %}
+            <a href="{{ path('showCategory', {'categoryId':category.id}) }}"><strong>{{ category.categoryName }}</strong></a>
+            <br>
+
+        {% else %}
+            No categories found
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

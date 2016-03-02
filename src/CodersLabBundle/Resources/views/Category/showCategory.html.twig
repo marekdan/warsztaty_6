@@ -1,0 +1,19 @@
+{% extends 'CodersLabBundle:Main:index.html.twig' %}
+
+{% block title %}
+    Category: {{ category.categoryName }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ category.categoryName }}
+    <a href="{{ path('editCategory', {'categoryId':category.id, 'userId':app.user.id}) }}"><strong>EDIT</strong></a>
+    <a href="{{ path('deleteCategory', {'categoryId':category.id, 'userId':app.user.id}) }}">DELETE</a><br><br>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

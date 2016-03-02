@@ -4,6 +4,7 @@ namespace CodersLabBundle\Controller;
 
 
 use CodersLabBundle\Entity\Category;
+use CodersLabBundle\Entity\Tasks;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -138,6 +139,9 @@ class CategoryController extends Controller {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
 
-        return ['category'=>$category];
+        $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
+        $tasks = $repoTasks->findByCategory($category);
+
+        return ['category'=>$category, 'tasks'=>$tasks];
     }
 }

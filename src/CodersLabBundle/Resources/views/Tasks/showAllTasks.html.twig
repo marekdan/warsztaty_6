@@ -1,0 +1,3 @@
+{% for task in tasks %}
+    <a href="{{ path('showTask', {'taskId':task.id}) }}">{{ task.name }}</a><br>
+{% endfor %}

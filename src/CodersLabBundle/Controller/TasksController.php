@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class TaskController
  * @package CodersLabBundle\Controller
- * @Route("/task")
+ * @Route("/tasks")
  */
 class TasksController extends Controller {
 
@@ -59,7 +59,7 @@ class TasksController extends Controller {
             $categoryRepo = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
             $category = $categoryRepo->find($categoryId);
             $task->setCategory($category);
-            $task->setStatus('todo');
+            $task->setStatus('To do');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
@@ -70,19 +70,26 @@ class TasksController extends Controller {
     }
 
     /**
-     * @Route("/showTask", name = "showTask")
+     * @Route("/showTask/{taskId}", name = "showTask")
      * @Template()
      */
-    public function showTaskAction() {
+    public function showTaskAction($taskId) {
+        //TODO show task with link to edit end delete
         return [];
     }
 
     /**
-     * @Route("/showAllTasks", name ="showAllTasks")
+     * @Route("/showAllTasks/{categoryId}", name ="showAllTasks")
      * @Template()
      */
-    public function showAllTasksAction() {
-        return [];
+    public function showAllTasksAction($categoryId) {
+        $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
+        $category = $repoCategory->find($categoryId);
+
+        $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
+        $tasks = $repoTasks->findByCategory($category);
+
+        return ['tasks'=>$tasks];
     }
 
 }

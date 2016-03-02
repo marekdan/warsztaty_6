@@ -34,6 +34,12 @@ class Category {
      * @ORM\JoinColumn(name = "user_id", referencedColumnName = "id")
      */
     private $users;
+//, onDelete="CASCADE"
+
+    /**
+     * @ORM\OneToMany(targetEntity = "Task", mappedBy = "category")
+     */
+    private $task;
 
     /**
      * Get id
@@ -63,5 +69,28 @@ class Category {
      */
     public function getCategoryName() {
         return $this->categoryName;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \CodersLabBundle\Entity\User $users
+     * @return Category
+     */
+    public function setUsers(\CodersLabBundle\Entity\User $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \CodersLabBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

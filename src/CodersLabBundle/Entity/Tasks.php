@@ -2,6 +2,7 @@
 
 namespace CodersLabBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="CodersLabBundle\Entity\TasksRepository")
  */
-class Tasks
-{
+class Tasks {
+
     /**
      * @var integer
      *
@@ -56,14 +57,18 @@ class Tasks
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity = "Category", inversedBy = "task")
+     * @ORM\JoinColumn(name = "category_id", referencedColumnName = "id")
+     */
+    private $category;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -73,8 +78,7 @@ class Tasks
      * @param string $name
      * @return Tasks
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -83,10 +87,9 @@ class Tasks
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -96,8 +99,7 @@ class Tasks
      * @param string $description
      * @return Tasks
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -106,10 +108,9 @@ class Tasks
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -119,8 +120,7 @@ class Tasks
      * @param \DateTime $date
      * @return Tasks
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
 
         return $this;
@@ -129,10 +129,9 @@ class Tasks
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -142,8 +141,7 @@ class Tasks
      * @param integer $priority
      * @return Tasks
      */
-    public function setPriority($priority)
-    {
+    public function setPriority($priority) {
         $this->priority = $priority;
 
         return $this;
@@ -152,10 +150,9 @@ class Tasks
     /**
      * Get priority
      *
-     * @return integer 
+     * @return integer
      */
-    public function getPriority()
-    {
+    public function getPriority() {
         return $this->priority;
     }
 
@@ -165,8 +162,7 @@ class Tasks
      * @param string $status
      * @return Tasks
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -175,10 +171,32 @@ class Tasks
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \CodersLabBundle\Entity\Category $category
+     * @return Tasks
+     */
+    public function setCategory(\CodersLabBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \CodersLabBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

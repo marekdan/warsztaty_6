@@ -37,6 +37,11 @@ class Category {
 //, onDelete="CASCADE"
 
     /**
+     * @ORM\OneToMany(targetEntity = "Tasks", mappedBy = "category")
+     */
+    private $task;
+
+    /**
      * Get id
      *
      * @return integer
@@ -72,8 +77,7 @@ class Category {
      * @param \CodersLabBundle\Entity\User $users
      * @return Category
      */
-    public function setUsers(\CodersLabBundle\Entity\User $users = null)
-    {
+    public function setUsers(\CodersLabBundle\Entity\User $users = null) {
         $this->users = $users;
 
         return $this;
@@ -82,10 +86,46 @@ class Category {
     /**
      * Get users
      *
-     * @return \CodersLabBundle\Entity\User 
+     * @return \CodersLabBundle\Entity\User
      */
-    public function getUsers()
-    {
+    public function getUsers() {
         return $this->users;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->task = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add task
+     *
+     * @param \CodersLabBundle\Entity\Task $task
+     * @return Category
+     */
+    public function addTask(\CodersLabBundle\Entity\Task $task) {
+        $this->task[] = $task;
+
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @param \CodersLabBundle\Entity\Task $task
+     */
+    public function removeTask(\CodersLabBundle\Entity\Task $task) {
+        $this->task->removeElement($task);
+    }
+
+    /**
+     * Get task
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTask() {
+        return $this->task;
     }
 }

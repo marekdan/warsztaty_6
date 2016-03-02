@@ -10,6 +10,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class CategoryController
+ * @package CodersLabBundle\Controller
+ * @Route("/category")
+ */
 class CategoryController extends Controller {
 
     public function generateFormCategory($category, $action) {
@@ -43,7 +48,6 @@ class CategoryController extends Controller {
         $category = new Category();
         $action = $this->generateUrl('addCategory', ['userId' => $userId]);
         $categoryForm = $this->generateFormCategory($category, $action);
-
         $categoryForm->handleRequest($reg);
 
         if ($categoryForm->isSubmitted()) {
@@ -102,6 +106,12 @@ class CategoryController extends Controller {
      * @Route("/deleteCategory/{categoryId}/{userId}", name = "deleteCategory")
      */
     public function deleteCategoryAction($categoryId, $userId){
+        $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
+        $category = $repoCategory->find($categoryId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
 
         return $this->redirectToRoute('showMyCategories', ['userId'=>$userId]);
     }

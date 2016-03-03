@@ -2,6 +2,7 @@
 
 namespace CodersLabBundle\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="CodersLabBundle\Entity\CommentRepository")
  */
-class Comment
-{
+class Comment {
+
     /**
      * @var integer
      *
@@ -39,10 +40,9 @@ class Comment
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,8 +52,7 @@ class Comment
      * @param string $commentText
      * @return Comment
      */
-    public function setCommentText($commentText)
-    {
+    public function setCommentText($commentText) {
         $this->commentText = $commentText;
 
         return $this;
@@ -62,10 +61,9 @@ class Comment
     /**
      * Get commentText
      *
-     * @return string 
+     * @return string
      */
-    public function getCommentText()
-    {
+    public function getCommentText() {
         return $this->commentText;
     }
 
@@ -75,8 +73,7 @@ class Comment
      * @param \DateTime $date
      * @return Comment
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
 
         return $this;
@@ -85,10 +82,9 @@ class Comment
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 }

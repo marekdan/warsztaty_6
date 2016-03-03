@@ -2,6 +2,7 @@
 
 namespace CodersLabBundle\Controller;
 
+
 use \DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CodersLabBundle\Entity\Category;
@@ -23,8 +24,8 @@ class TasksController extends Controller {
         $form->add('name', 'text');
         $form->add('description', 'text');
         $form->add('priority', 'choice', ['label'    => 'select priority',
-                                'multiple' => false,
-                                'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
+                                          'multiple' => false,
+                                          'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
         $form->add('save', 'submit', ['label' => 'Submit']);
         $form->setAction($action);
         $formTask = $form->getForm();
@@ -66,7 +67,21 @@ class TasksController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('mainSite');
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+    }
+
+    /**
+     * @Route("/deleteTask/{taskId}/{categoryId}", name = "deleteTask")
+     */
+    public function deleteTaskAction($taskId, $categoryId) {
+        $repoTask = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
+        $task = $repoTask->find($taskId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($task);
+        $em->flush();
+
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
     }
 
     /**
@@ -74,8 +89,10 @@ class TasksController extends Controller {
      * @Template()
      */
     public function showTaskAction($taskId) {
-        //TODO show task with link to edit end delete
-        return [];
+        $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
+        $task = $repoTasks->find($taskId);
+
+        return ['task' => $task];
     }
 
     /**
@@ -89,7 +106,6 @@ class TasksController extends Controller {
         $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
         $tasks = $repoTasks->findByCategory($category);
 
-        return ['tasks'=>$tasks];
+        return ['tasks' => $tasks];
     }
-
 }

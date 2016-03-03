@@ -63,8 +63,7 @@ class Tasks {
      */
     private $category;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->date = new \DateTime();
     }
 
@@ -188,8 +187,7 @@ class Tasks {
      * @param \CodersLabBundle\Entity\Category $category
      * @return Tasks
      */
-    public function setCategory(\CodersLabBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\CodersLabBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -198,10 +196,9 @@ class Tasks {
     /**
      * Get category
      *
-     * @return \CodersLabBundle\Entity\Category 
+     * @return \CodersLabBundle\Entity\Category
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 }

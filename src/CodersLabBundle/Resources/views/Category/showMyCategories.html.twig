@@ -1,29 +1,23 @@
-{% extends 'CodersLabBundle:Main:index.html.twig' %}
+{% extends 'CodersLabBundle::layout.html.twig' %}
 
 {% block title %}
     Categories
 {% endblock %}
 
-{% block header %}
-    {{ parent() }}
+{% block panelTitle %}
+    Your tasks categories
 {% endblock %}
 
 {% block content %}
-    <div>
-        <h1>
-            Your Categories:
-        </h1>
-        <p>(Click on category and you will see tasks for that category)</p>
-        {% for category in categories %}
-            <a href="{{ path('showCategory', {'categoryId':category.id}) }}"><strong>{{ category.categoryName }}</strong></a>
-            <br>
-
-        {% else %}
-            No categories found
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block footer %}
-    {{ parent() }}
+    <table class="table">
+    {% for category in categories %}
+        <tr>
+            <td>
+                <a href="{{ path('showCategory', {'categoryId':category.id}) }}"><strong>{{ category.categoryName }}</strong></a>
+            </td>
+        </tr>
+    {% else %}
+        No categories found
+    {% endfor %}
+    </table>
 {% endblock %}

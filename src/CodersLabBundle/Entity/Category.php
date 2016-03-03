@@ -102,10 +102,10 @@ class Category {
     /**
      * Add task
      *
-     * @param \CodersLabBundle\Entity\Task $task
+     * @param \CodersLabBundle\Entity\Tasks $task
      * @return Category
      */
-    public function addTask(\CodersLabBundle\Entity\Task $task) {
+    public function addTask(\CodersLabBundle\Entity\Tasks $task) {
         $this->task[] = $task;
 
         return $this;
@@ -114,9 +114,9 @@ class Category {
     /**
      * Remove task
      *
-     * @param \CodersLabBundle\Entity\Task $task
+     * @param \CodersLabBundle\Entity\Tasks $task
      */
-    public function removeTask(\CodersLabBundle\Entity\Task $task) {
+    public function removeTask(\CodersLabBundle\Entity\Tasks $task) {
         $this->task->removeElement($task);
     }
 

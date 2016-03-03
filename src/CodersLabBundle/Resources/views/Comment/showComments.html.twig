@@ -1,0 +1,20 @@
+{% extends 'CodersLabBundle::layout.html.twig' %}
+
+{% block title %}
+    Task: {{ task.name }}
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    {#<a href="{{ path('showMyCategories', {'userId':app.user.id}) }}">BACK TO Tasks</a><br>#}
+{% endblock %}
+
+{% block panelTitle %}
+    Task: {{ task.name }}
+    <a class="btn btn-default" href="{{ path('addComment', {'taskId':task.id}) }}">ADD
+        COMMENT</a>
+{% endblock %}
+
+{% block content %}
+    tu beda komentarze
+{% endblock %}

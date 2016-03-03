@@ -1,4 +1,15 @@
-<h1>Add Tasks</h1>
-{{ form_start(taskForm) }}
-{{ form_widget(taskForm) }}
-{{ form_end(taskForm) }}
+{% extends 'CodersLabBundle::layout.html.twig' %}
+
+{% block title %}
+    Add Tasks
+{% endblock %}
+
+{% block panelTitle %}
+    Add Tasks
+{% endblock %}
+
+{% block content %}
+    {{ form_start(taskForm) }}
+    {{ form_widget(taskForm) }}
+    {{ form_end(taskForm) }}
+{% endblock %}

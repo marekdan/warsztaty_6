@@ -1,15 +1,11 @@
-{% extends 'CodersLabBundle:Main:index.html.twig' %}
+{% extends 'CodersLabBundle::layout.html.twig' %}
 
 {% block title %}
     Main Site
 {% endblock %}
 
-{% block header %}
-    {{ parent() }}
-    {% if app.user is not null %}
-    {% else %}
-        <a href="{{ path('fos_user_registration_register') }}">REGISTER</a><br>
-    {% endif %}
+{% block panelTitle %}
+    Main Site
 {% endblock %}
 
 {% block content %}
@@ -17,8 +13,4 @@
         <a href="{{ path('addCategory', {'userId':app.user.id}) }}">ADD CATEGORY</a><br>
         <a href="{{ path('showMyCategories', {'userId':app.user.id}) }}">SHOW MY CATEGORIES</a><br>
     {% endif %}
-{% endblock %}
-
-{% block footer %}
-    {{ parent() }}
 {% endblock %}

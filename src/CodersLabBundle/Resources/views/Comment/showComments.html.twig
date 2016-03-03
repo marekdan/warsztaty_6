@@ -16,5 +16,13 @@
 {% endblock %}
 
 {% block content %}
-    tu beda komentarze
+    <table class="table">
+        {% for comment in comments %}
+            <tr>
+                <td>
+                    {{ comment.commentText }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

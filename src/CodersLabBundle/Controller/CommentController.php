@@ -68,12 +68,13 @@ class CommentController extends Controller {
      * @Template()
      */
     public function showCommentsAction($taskId) {
-        $taskRepo = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
-        $task = $taskRepo->find($taskId);
+        $repoTask = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
+        $task = $repoTask->find($taskId);
 
-        
+        $repoComments = $this->getDoctrine()->getRepository('CodersLabBundle:Comment');
+        $comments = $repoComments->findByTask($task);
 
-        return ['task' => $task];
+        return ['comments' => $comments, 'task'=>$task];
     }
 
 

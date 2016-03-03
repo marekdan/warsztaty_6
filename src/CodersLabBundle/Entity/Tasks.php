@@ -63,6 +63,11 @@ class Tasks {
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity = "Comment", mappedBy = "task")
+     */
+    private $comments;
+
     public function __construct() {
         $this->date = new \DateTime();
     }
@@ -200,5 +205,38 @@ class Tasks {
      */
     public function getCategory() {
         return $this->category;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \CodersLabBundle\Entity\Comment $comments
+     * @return Tasks
+     */
+    public function addComment(\CodersLabBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \CodersLabBundle\Entity\Comment $comments
+     */
+    public function removeComment(\CodersLabBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

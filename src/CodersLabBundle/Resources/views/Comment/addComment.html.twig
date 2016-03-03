@@ -9,5 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    tu bedzie dodwanie komentarzy
+    {{ form_start(commentForm) }}
+    {{ form_widget(commentForm) }}
+    {{ form_end(commentForm) }}
 {% endblock %}

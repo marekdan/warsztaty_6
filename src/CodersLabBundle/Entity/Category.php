@@ -31,10 +31,9 @@ class Category {
 
     /**
      * @ORM\ManyToOne(targetEntity= "User", inversedBy= "categories")
-     * @ORM\JoinColumn(name = "user_id", referencedColumnName = "id")
+     * @ORM\JoinColumn(name = "user_id", referencedColumnName = "id", onDelete="CASCADE")
      */
     private $users;
-//, onDelete="CASCADE"
 
     /**
      * @ORM\OneToMany(targetEntity = "Tasks", mappedBy = "category")

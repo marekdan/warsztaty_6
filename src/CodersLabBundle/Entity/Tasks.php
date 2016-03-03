@@ -59,7 +59,7 @@ class Tasks {
 
     /**
      * @ORM\ManyToOne(targetEntity = "Category", inversedBy = "task")
-     * @ORM\JoinColumn(name = "category_id", referencedColumnName = "id")
+     * @ORM\JoinColumn(name = "category_id", referencedColumnName = "id", onDelete="CASCADE")
      */
     private $category;
 

@@ -4,11 +4,6 @@
     Task: {{ task.name }}
 {% endblock %}
 
-{% block header %}
-    {{ parent() }}
-    {#<a href="{{ path('showMyCategories', {'userId':app.user.id}) }}">BACK TO Tasks</a><br>#}
-{% endblock %}
-
 {% block panelTitle %}
     Task: {{ task.name }}
     <a class="btn btn-default" href="{{ path('addComment', {'taskId':task.id}) }}">ADD
@@ -22,7 +17,12 @@
                 <td>
                     {{ comment.commentText }}
                 </td>
+                <td>
+                    <a class="btn btn-default" href="{{ path('deleteComment', {'commentId':comment.id, 'taskId':task.id}) }}">DELETE</a>
+                </td>
             </tr>
+        {% else %}
+            No Comments
         {% endfor %}
     </table>
 {% endblock %}

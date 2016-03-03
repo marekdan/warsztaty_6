@@ -60,7 +60,7 @@ class CommentController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('mainSite');
+        return $this->redirectToRoute('showComments', ['taskId'=>$taskId]);
     }
 
     /**
@@ -77,5 +77,18 @@ class CommentController extends Controller {
         return ['comments' => $comments, 'task'=>$task];
     }
 
+    /**
+     * @Route("/deleteComment/{commentId}/{taskId}", name = "deleteComment")
+     */
+    public function deleteCommentAction($commentId, $taskId){
+        $repoComment = $this->getDoctrine()->getRepository('CodersLabBundle:Comment');
+        $comment = $repoComment->find($commentId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+
+        return $this->redirectToRoute('showComments', ['taskId'=>$taskId]);
+    }
 
 }

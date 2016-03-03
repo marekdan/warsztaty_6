@@ -38,7 +38,7 @@ class Comment {
 
     /**
      * @ORM\ManyToOne(targetEntity = "Tasks", inversedBy = "comments")
-     * @ORM\JoinColumn(name = "task_id", referencedColumnName = "id")
+     * @ORM\JoinColumn(name = "task_id", referencedColumnName = "id", onDelete="CASCADE")
      */
     private $task;
 

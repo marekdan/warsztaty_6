@@ -61,7 +61,7 @@ class CategoryController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('mainSite');
+        return $this->redirectToRoute('showMyCategories', ['userId'=>$userId]);
     }
 
     /**

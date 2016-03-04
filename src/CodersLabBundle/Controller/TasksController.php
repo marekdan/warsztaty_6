@@ -79,8 +79,8 @@ class TasksController extends Controller {
                                           'multiple' => false,
                                           'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
         $form->add('status', 'choice', ['label'    => 'Status',
-                                          'multiple' => false,
-                                          'choices'  => ['Done' => 'Done', 'To do' => 'To do']]);
+                                        'multiple' => false,
+                                        'choices'  => ['Done' => 'Done', 'To do' => 'To do']]);
         $form->add('save', 'submit', ['label' => 'Submit']);
         $form->setAction($action);
         $formTask = $form->getForm();
@@ -95,7 +95,7 @@ class TasksController extends Controller {
      * @Method("GET")
      */
     public function editTaskAction(Tasks $task, $categoryId) {
-        $action = $this->generateUrl('editTask', ['taskId'=>$task->getId(), 'categoryId' => $categoryId]);
+        $action = $this->generateUrl('editTask', ['taskId' => $task->getId(), 'categoryId' => $categoryId]);
         $taskForm = $this->generateEditFormTask($task, $action);
 
         return ['taskEditForm' => $taskForm->createView()];
@@ -106,8 +106,8 @@ class TasksController extends Controller {
      * @ParamConverter("task", class="CodersLabBundle:Tasks", options={"id" = "taskId"})
      * @Method("POST")
      */
-    public function editTaskSaveAction(Request $reg,$task, $categoryId) {
-        $action = $this->generateUrl('editTask', ['taskId'=>$task->getId(), 'categoryId' => $categoryId]);
+    public function editTaskSaveAction(Request $reg, $task, $categoryId) {
+        $action = $this->generateUrl('editTask', ['taskId' => $task->getId(), 'categoryId' => $categoryId]);
         $taskForm = $this->generateEditFormTask($task, $action);
         $taskForm->handleRequest($reg);
 
@@ -124,7 +124,7 @@ class TasksController extends Controller {
      * @Route("/markAsDoneTask/{taskId}/{categoryId}", name = "markAsDoneTask")
      * @ParamConverter("task", class="CodersLabBundle:Tasks", options={"id" = "taskId"})
      */
-    public function markAsDoneTaskAction(Tasks $task, $categoryId){
+    public function markAsDoneTaskAction(Tasks $task, $categoryId) {
         $task->setStatus('Done');
         $em = $this->getDoctrine()->getManager();
         $em->flush();
@@ -158,7 +158,7 @@ class TasksController extends Controller {
     }
 
     /**
-     * @Route("/showAllTasks/{categoryId}", name ="showAllTasks")
+     * @Route("/showAllTasks/{categoryId}/{which}", name ="showAllTasks")
      * @Template()
      */
     public function showAllTasksAction($categoryId) {

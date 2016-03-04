@@ -103,8 +103,7 @@ class Comment {
      * @param \CodersLabBundle\Entity\Tasks $task
      * @return Comment
      */
-    public function setTask(\CodersLabBundle\Entity\Tasks $task = null)
-    {
+    public function setTask(\CodersLabBundle\Entity\Tasks $task = null) {
         $this->task = $task;
 
         return $this;
@@ -113,10 +112,9 @@ class Comment {
     /**
      * Get task
      *
-     * @return \CodersLabBundle\Entity\Tasks 
+     * @return \CodersLabBundle\Entity\Tasks
      */
-    public function getTask()
-    {
+    public function getTask() {
         return $this->task;
     }
 }

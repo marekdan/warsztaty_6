@@ -32,15 +32,13 @@ class User extends BaseUser {
     }
 
 
-
     /**
      * Add categories
      *
      * @param \CodersLabBundle\Entity\Category $categories
      * @return User
      */
-    public function addCategory(\CodersLabBundle\Entity\Category $categories)
-    {
+    public function addCategory(\CodersLabBundle\Entity\Category $categories) {
         $this->categories[] = $categories;
 
         return $this;
@@ -51,18 +49,16 @@ class User extends BaseUser {
      *
      * @param \CodersLabBundle\Entity\Category $categories
      */
-    public function removeCategory(\CodersLabBundle\Entity\Category $categories)
-    {
+    public function removeCategory(\CodersLabBundle\Entity\Category $categories) {
         $this->categories->removeElement($categories);
     }
 
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCategories()
-    {
+    public function getCategories() {
         return $this->categories;
     }
 }

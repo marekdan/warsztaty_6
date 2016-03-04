@@ -13,7 +13,7 @@
     {% for category in categories %}
         <tr>
             <td>
-                <a href="{{ path('showCategory', {'categoryId':category.id}) }}"><strong>{{ category.categoryName }}</strong></a>
+                <a href="{{ path('showCategory', {'categoryId':category.id, 'which':1}) }}"><strong>{{ category.categoryName }}</strong></a>
             </td>
         </tr>
     {% else %}

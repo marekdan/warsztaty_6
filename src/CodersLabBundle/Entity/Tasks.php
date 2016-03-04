@@ -213,8 +213,7 @@ class Tasks {
      * @param \CodersLabBundle\Entity\Comment $comments
      * @return Tasks
      */
-    public function addComment(\CodersLabBundle\Entity\Comment $comments)
-    {
+    public function addComment(\CodersLabBundle\Entity\Comment $comments) {
         $this->comments[] = $comments;
 
         return $this;
@@ -225,18 +224,16 @@ class Tasks {
      *
      * @param \CodersLabBundle\Entity\Comment $comments
      */
-    public function removeComment(\CodersLabBundle\Entity\Comment $comments)
-    {
+    public function removeComment(\CodersLabBundle\Entity\Comment $comments) {
         $this->comments->removeElement($comments);
     }
 
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
 }

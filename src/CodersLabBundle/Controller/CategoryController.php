@@ -61,7 +61,7 @@ class CategoryController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('showMyCategories', ['userId'=>$userId]);
+        return $this->redirectToRoute('showMyCategories', ['userId' => $userId]);
     }
 
     /**
@@ -72,7 +72,7 @@ class CategoryController extends Controller {
     public function editCategoryAction($categoryId, $userId) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
-        $action = $this->generateUrl('editCategory', ['categoryId' => $categoryId, 'userId'=>$userId]);
+        $action = $this->generateUrl('editCategory', ['categoryId' => $categoryId, 'userId' => $userId]);
         $categoryForm = $this->generateFormCategory($category, $action);
 
         return ['categoryForm' => $categoryForm->createView()];
@@ -85,7 +85,7 @@ class CategoryController extends Controller {
     public function editCategorySaveAction(Request $reg, $categoryId, $userId) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
-        $action = $this->generateUrl('editCategory', ['categoryId' => $categoryId, 'userId'=>$userId]);
+        $action = $this->generateUrl('editCategory', ['categoryId' => $categoryId, 'userId' => $userId]);
         $categoryForm = $this->generateFormCategory($category, $action);
 
         $categoryForm->handleRequest($reg);
@@ -100,13 +100,13 @@ class CategoryController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('showMyCategories', ['userId'=>$userId]);
+        return $this->redirectToRoute('showMyCategories', ['userId' => $userId]);
     }
 
     /**
      * @Route("/deleteCategory/{categoryId}/{userId}", name = "deleteCategory")
      */
-    public function deleteCategoryAction($categoryId, $userId){
+    public function deleteCategoryAction($categoryId, $userId) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
 
@@ -114,7 +114,7 @@ class CategoryController extends Controller {
         $em->remove($category);
         $em->flush();
 
-        return $this->redirectToRoute('showMyCategories', ['userId'=>$userId]);
+        return $this->redirectToRoute('showMyCategories', ['userId' => $userId]);
     }
 
     /**
@@ -132,16 +132,32 @@ class CategoryController extends Controller {
     }
 
     /**
-     * @Route("/showCategory/{categoryId}", name = "showCategory")
+     * @Route("/showCategory/{categoryId}/{which}", name = "showCategory")
      * @Template()
      */
-    public function showCategoryAction($categoryId){
+    public function showCategoryAction($categoryId, $which) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
 
         $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
         $tasks = $repoTasks->findByCategory($category);
 
-        return ['category'=>$category, 'tasks'=>$tasks];
+        $sortTasks = [];
+        if ($which == 2) {
+            foreach ($tasks as $task) {
+                if($task->getStatus() == 'To do')
+                $sortTasks[] = $task;
+            }
+            $tasks = $sortTasks;
+        }
+        elseif ($which == 3) {
+            foreach ($tasks as $task) {
+                if($task->getStatus() == 'Done')
+                    $sortTasks[] = $task;
+            }
+            $tasks = $sortTasks;
+        }
+
+        return ['category' => $category, 'tasks' => $tasks];
     }
 }

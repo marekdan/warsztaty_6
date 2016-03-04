@@ -12,5 +12,16 @@
     {% if app.user is not null %}
         <a href="{{ path('addCategory', {'userId':app.user.id}) }}">ADD CATEGORY</a><br>
         <a href="{{ path('showMyCategories', {'userId':app.user.id}) }}">SHOW MY CATEGORIES</a><br>
+    {% else %}
+        <div class="list-group">
+            <h4 class="list-group-item-heading">
+                This website allows you to make plan for specific day.
+            </h4>
+            <p class="list-group-item-text">
+                You can make categories for example "Everyday". Then add task for this category and even comments for
+                each task.<br>
+                And u can mark tasks as "Done" or "To do"
+            </p>
+        </div>
     {% endif %}
 {% endblock %}

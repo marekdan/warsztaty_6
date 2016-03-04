@@ -6,6 +6,17 @@
         <meta charset="UTF-8" />
     </head>
     <body>
+    <div class="navbar navbar-default navbar-static-top navbar-inverse">
+        {% block header %}
+            <a class="navbar-brand" href="{{ path('mainSite') }}">MAIN SITE</a>
+            {% if app.user is not null %}
+                <a class="pull-right" href="{{ path('fos_user_security_logout') }}">LOGOUT</a>
+            {% else %}
+                <a class="pull-right" href="{{ path('fos_user_security_login') }}">LOGIN</a><br>
+                <a class="pull-right" href="{{ path('fos_user_registration_register') }}">REGISTER</a><br>
+            {% endif %}
+        {% endblock %}
+    </div>
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |

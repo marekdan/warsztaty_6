@@ -10,6 +10,7 @@ use CodersLabBundle\Entity\Tasks;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -23,7 +24,7 @@ class TasksController extends Controller {
         $form = $this->createFormBuilder($task);
         $form->add('name', 'text');
         $form->add('description', 'text');
-        $form->add('priority', 'choice', ['label'    => 'select priority',
+        $form->add('priority', 'choice', ['label'    => 'Priority',
                                           'multiple' => false,
                                           'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
         $form->add('save', 'submit', ['label' => 'Submit']);
@@ -66,6 +67,67 @@ class TasksController extends Controller {
             $em->persist($task);
             $em->flush();
         }
+
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+    }
+
+    public function generateEditFormTask($task, $action) {
+        $form = $this->createFormBuilder($task);
+        $form->add('name', 'text');
+        $form->add('description', 'text');
+        $form->add('priority', 'choice', ['label'    => 'Priority',
+                                          'multiple' => false,
+                                          'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
+        $form->add('status', 'choice', ['label'    => 'Status',
+                                          'multiple' => false,
+                                          'choices'  => ['Done' => 'Done', 'To do' => 'To do']]);
+        $form->add('save', 'submit', ['label' => 'Submit']);
+        $form->setAction($action);
+        $formTask = $form->getForm();
+
+        return $formTask;
+    }
+
+    /**
+     * @Route("/editTask/{taskId}/{categoryId}", name = "editTask")
+     * @ParamConverter("task", class="CodersLabBundle:Tasks", options={"id" = "taskId"})
+     * @Template()
+     * @Method("GET")
+     */
+    public function editTaskAction(Tasks $task, $categoryId) {
+        $action = $this->generateUrl('editTask', ['taskId'=>$task->getId(), 'categoryId' => $categoryId]);
+        $taskForm = $this->generateEditFormTask($task, $action);
+
+        return ['taskEditForm' => $taskForm->createView()];
+    }
+
+    /**
+     * @Route("/editTask/{taskId}/{categoryId}", name = "editTaskSave")
+     * @ParamConverter("task", class="CodersLabBundle:Tasks", options={"id" = "taskId"})
+     * @Method("POST")
+     */
+    public function editTaskSaveAction(Request $reg,$task, $categoryId) {
+        $action = $this->generateUrl('editTask', ['taskId'=>$task->getId(), 'categoryId' => $categoryId]);
+        $taskForm = $this->generateEditFormTask($task, $action);
+        $taskForm->handleRequest($reg);
+
+        if ($taskForm->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($task);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+    }
+
+    /**
+     * @Route("/markAsDoneTask/{taskId}/{categoryId}", name = "markAsDoneTask")
+     * @ParamConverter("task", class="CodersLabBundle:Tasks", options={"id" = "taskId"})
+     */
+    public function markAsDoneTaskAction(Tasks $task, $categoryId){
+        $task->setStatus('Done');
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
 
         return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
     }

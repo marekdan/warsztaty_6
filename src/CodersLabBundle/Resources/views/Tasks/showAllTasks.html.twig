@@ -5,15 +5,31 @@
         <td><strong>Priority:</strong></td>
         <td><strong>Status:</strong></td>
     </tr>
-{% for task in tasks %}
-    <tr>
-        {#<td><a href="{{ path('showTask', {'taskId':task.id}) }}">{{ task.name }}</a></td>#}
-        <td>{{ task.name }}</td>
-        <td>{{ task.description }}</td>
-        <td>{{ task.priority }}</td>
-        <td>{{ task.status }}</td>
-        <td><a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">Comments</a></td>
-        <td><a class="btn btn-default" href=" {{ path('deleteTask', {'taskId':task.id, 'categoryId':categoryId}) }}">DELETE</a></td>
-    </tr>
-{% endfor %}
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.status }}</td>
+
+            <td>
+                <a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">Comments</a>
+                <a class="btn btn-default"
+                   href=" {{ path('deleteTask', {'taskId':task.id, 'categoryId':categoryId}) }}">DELETE</a>
+                {% if (task.status == 'To do') %}
+                    <a class="btn btn-default"
+                       href=" {{ path('editTask', {'taskId':task.id, 'categoryId':categoryId}) }}">EDIT</a>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if (task.status == 'To do') %}
+                    <a class="btn btn-default"
+                       href=" {{ path('markAsDoneTask', {'taskId':task.id, 'categoryId':categoryId}) }}">Mark as
+                        Done</a>
+                {% endif %}
+            </td>
+
+        </tr>
+    {% endfor %}
 </table>

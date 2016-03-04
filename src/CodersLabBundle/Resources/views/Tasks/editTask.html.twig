@@ -1,0 +1,15 @@
+{% extends 'CodersLabBundle::layout.html.twig' %}
+
+{% block title %}
+    Edit Task
+{% endblock %}
+
+{% block panelTitle %}
+    Edit Task
+{% endblock %}
+
+{% block content %}
+    {{ form_start(taskEditForm) }}
+    {{ form_widget(taskEditForm) }}
+    {{ form_end(taskEditForm) }}
+{% endblock %}

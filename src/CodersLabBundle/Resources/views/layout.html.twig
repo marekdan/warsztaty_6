@@ -17,10 +17,10 @@
         {% block header %}
             <a class="navbar-brand" href="{{ path('mainSite') }}">MAIN SITE</a>
             {% if app.user is not null %}
-                <a href="{{ path('fos_user_security_logout') }}">LOGOUT</a>
+                <a class="pull-right" href="{{ path('fos_user_security_logout') }}">LOGOUT</a>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}">LOGIN</a><br>
-                <a href="{{ path('fos_user_registration_register') }}">REGISTER</a><br>
+                <a class="pull-right" href="{{ path('fos_user_security_login') }}">LOGIN</a><br>
+                <a class="pull-right" href="{{ path('fos_user_registration_register') }}">REGISTER</a><br>
             {% endif %}
         {% endblock %}
     </div>

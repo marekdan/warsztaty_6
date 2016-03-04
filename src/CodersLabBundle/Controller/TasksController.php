@@ -27,6 +27,12 @@ class TasksController extends Controller {
         $form->add('priority', 'choice', ['label'    => 'Priority',
                                           'multiple' => false,
                                           'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
+        $form->add('date', 'date', [
+            'input'  => 'datetime',
+            'widget' => 'single_text',
+            'attr'   => [
+                'class' => 'calendar'
+            ]]);
         $form->add('save', 'submit', ['label' => 'Submit']);
         $form->setAction($action);
         $formTask = $form->getForm();
@@ -68,7 +74,7 @@ class TasksController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId, 'which' => 3]);
     }
 
     public function generateEditFormTask($task, $action) {
@@ -81,6 +87,12 @@ class TasksController extends Controller {
         $form->add('status', 'choice', ['label'    => 'Status',
                                         'multiple' => false,
                                         'choices'  => ['Done' => 'Done', 'To do' => 'To do']]);
+        $form->add('date', 'date', [
+            'input'  => 'datetime',
+            'widget' => 'single_text',
+            'attr'   => [
+                'class' => 'calendar'
+            ]]);
         $form->add('save', 'submit', ['label' => 'Submit']);
         $form->setAction($action);
         $formTask = $form->getForm();
@@ -117,7 +129,7 @@ class TasksController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId, 'which' => 3]);
     }
 
     /**
@@ -129,7 +141,7 @@ class TasksController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId, 'which' => 3]);
     }
 
     /**
@@ -143,7 +155,7 @@ class TasksController extends Controller {
         $em->remove($task);
         $em->flush();
 
-        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId]);
+        return $this->redirectToRoute('showCategory', ['categoryId' => $categoryId, 'which' => 3]);
     }
 
     /**
@@ -164,7 +176,6 @@ class TasksController extends Controller {
     public function showAllTasksAction($categoryId) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
-
         $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
         $tasks = $repoTasks->findByCategory($category);
 

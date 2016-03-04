@@ -4,6 +4,7 @@
         <td><strong>Description:</strong></td>
         <td><strong>Priority:</strong></td>
         <td><strong>Status:</strong></td>
+        <td><strong>Data:</strong></td>
     </tr>
     {% for task in tasks %}
         <tr>
@@ -11,6 +12,7 @@
             <td>{{ task.description }}</td>
             <td>{{ task.priority }}</td>
             <td>{{ task.status }}</td>
+            <td>{{ task.date|date('Y-m-d') }}</td>
 
             <td>
                 <a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">Comments</a>

@@ -13,9 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CommentController extends Controller {
 
-    /**
-     *
-     */
     public function generateFormComment($comment, $action) {
         $form = $this->createFormBuilder($comment);
         $form->add('commentText', 'text');
@@ -60,7 +57,7 @@ class CommentController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('showComments', ['taskId'=>$taskId]);
+        return $this->redirectToRoute('showComments', ['taskId' => $taskId]);
     }
 
     /**
@@ -74,13 +71,13 @@ class CommentController extends Controller {
         $repoComments = $this->getDoctrine()->getRepository('CodersLabBundle:Comment');
         $comments = $repoComments->findByTask($task);
 
-        return ['comments' => $comments, 'task'=>$task];
+        return ['comments' => $comments, 'task' => $task];
     }
 
     /**
      * @Route("/deleteComment/{commentId}/{taskId}", name = "deleteComment")
      */
-    public function deleteCommentAction($commentId, $taskId){
+    public function deleteCommentAction($commentId, $taskId) {
         $repoComment = $this->getDoctrine()->getRepository('CodersLabBundle:Comment');
         $comment = $repoComment->find($commentId);
 
@@ -88,7 +85,7 @@ class CommentController extends Controller {
         $em->remove($comment);
         $em->flush();
 
-        return $this->redirectToRoute('showComments', ['taskId'=>$taskId]);
+        return $this->redirectToRoute('showComments', ['taskId' => $taskId]);
     }
 
 }

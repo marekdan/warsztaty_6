@@ -87,7 +87,6 @@ class CategoryController extends Controller {
         $category = $repoCategory->find($categoryId);
         $action = $this->generateUrl('editCategory', ['categoryId' => $categoryId, 'userId' => $userId]);
         $categoryForm = $this->generateFormCategory($category, $action);
-
         $categoryForm->handleRequest($reg);
 
         if ($categoryForm->isSubmitted()) {
@@ -140,17 +139,20 @@ class CategoryController extends Controller {
         $category = $repoCategory->find($categoryId);
 
         $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
-        $tasks = $repoTasks->findByCategory($category);
+        $tasks = $repoTasks->findBy(
+            array('category' => $category->getId()),
+            array('priority' => 'ASC')
+        );
 
         $sortTasks = [];
-        if ($which == 2) {
+        if ($which == 1) {
             foreach ($tasks as $task) {
                 if($task->getStatus() == 'To do')
                 $sortTasks[] = $task;
             }
             $tasks = $sortTasks;
         }
-        elseif ($which == 3) {
+        elseif ($which == 2) {
             foreach ($tasks as $task) {
                 if($task->getStatus() == 'Done')
                     $sortTasks[] = $task;

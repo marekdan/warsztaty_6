@@ -10,7 +10,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class TaskController
+ * @package CodersLabBundle\Controller
+ * @Route("/comment")
+ */
 class CommentController extends Controller {
 
     public function generateFormComment($comment, $action) {

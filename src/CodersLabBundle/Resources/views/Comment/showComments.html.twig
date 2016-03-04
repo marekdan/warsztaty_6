@@ -4,11 +4,6 @@
     Task: {{ task.name }}
 {% endblock %}
 
-{% block header %}
-    {{ parent() }}
-    <a href="{{ path('showMyCategories', {'userId':app.user.id}) }}">BACK TO {{ task.name|capitalize }}</a><br>
-{% endblock %}
-
 {% block panelTitle %}
     Task: {{ task.name }}
     <a class="btn btn-default" href="{{ path('addComment', {'taskId':task.id}) }}">ADD

@@ -15,7 +15,7 @@
             <td>{{ task.date|date('Y-m-d') }}</td>
 
             <td>
-                <a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">Comments</a>
+                <a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">{{ task.comments|length }} Comments</a>
                 <a class="btn btn-default"
                    href=" {{ path('deleteTask', {'taskId':task.id, 'categoryId':categoryId}) }}">DELETE</a>
                 {% if (task.status == 'To do') %}

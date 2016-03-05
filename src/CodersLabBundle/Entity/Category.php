@@ -15,7 +15,6 @@ class Category {
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,7 +23,6 @@ class Category {
 
     /**
      * @var string
-     *
      * @ORM\Column(name="categoryName", type="string", length=100)
      */
     private $categoryName;
@@ -42,7 +40,6 @@ class Category {
 
     /**
      * Get id
-     *
      * @return integer
      */
     public function getId() {
@@ -51,7 +48,6 @@ class Category {
 
     /**
      * Set categoryName
-     *
      * @param string $categoryName
      * @return Category
      */
@@ -63,7 +59,6 @@ class Category {
 
     /**
      * Get categoryName
-     *
      * @return string
      */
     public function getCategoryName() {
@@ -72,7 +67,6 @@ class Category {
 
     /**
      * Set users
-     *
      * @param \CodersLabBundle\Entity\User $users
      * @return Category
      */
@@ -84,7 +78,6 @@ class Category {
 
     /**
      * Get users
-     *
      * @return \CodersLabBundle\Entity\User
      */
     public function getUsers() {
@@ -100,7 +93,6 @@ class Category {
 
     /**
      * Add task
-     *
      * @param \CodersLabBundle\Entity\Tasks $task
      * @return Category
      */
@@ -112,7 +104,6 @@ class Category {
 
     /**
      * Remove task
-     *
      * @param \CodersLabBundle\Entity\Tasks $task
      */
     public function removeTask(\CodersLabBundle\Entity\Tasks $task) {
@@ -121,7 +112,6 @@ class Category {
 
     /**
      * Get task
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getTask() {

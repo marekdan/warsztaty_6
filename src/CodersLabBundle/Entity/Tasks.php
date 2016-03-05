@@ -74,7 +74,6 @@ class Tasks {
 
     /**
      * Get id
-     *
      * @return integer
      */
     public function getId() {
@@ -83,7 +82,6 @@ class Tasks {
 
     /**
      * Set name
-     *
      * @param string $name
      * @return Tasks
      */
@@ -95,7 +93,6 @@ class Tasks {
 
     /**
      * Get name
-     *
      * @return string
      */
     public function getName() {
@@ -104,7 +101,6 @@ class Tasks {
 
     /**
      * Set description
-     *
      * @param string $description
      * @return Tasks
      */
@@ -116,7 +112,6 @@ class Tasks {
 
     /**
      * Get description
-     *
      * @return string
      */
     public function getDescription() {
@@ -125,7 +120,6 @@ class Tasks {
 
     /**
      * Set date
-     *
      * @param \DateTime $date
      * @return Tasks
      */
@@ -137,7 +131,6 @@ class Tasks {
 
     /**
      * Get date
-     *
      * @return \DateTime
      */
     public function getDate() {
@@ -146,7 +139,6 @@ class Tasks {
 
     /**
      * Set priority
-     *
      * @param integer $priority
      * @return Tasks
      */
@@ -158,7 +150,6 @@ class Tasks {
 
     /**
      * Get priority
-     *
      * @return integer
      */
     public function getPriority() {
@@ -167,7 +158,6 @@ class Tasks {
 
     /**
      * Set status
-     *
      * @param string $status
      * @return Tasks
      */
@@ -179,7 +169,6 @@ class Tasks {
 
     /**
      * Get status
-     *
      * @return string
      */
     public function getStatus() {
@@ -188,7 +177,6 @@ class Tasks {
 
     /**
      * Set category
-     *
      * @param \CodersLabBundle\Entity\Category $category
      * @return Tasks
      */
@@ -200,7 +188,6 @@ class Tasks {
 
     /**
      * Get category
-     *
      * @return \CodersLabBundle\Entity\Category
      */
     public function getCategory() {
@@ -209,7 +196,6 @@ class Tasks {
 
     /**
      * Add comments
-     *
      * @param \CodersLabBundle\Entity\Comment $comments
      * @return Tasks
      */
@@ -221,7 +207,6 @@ class Tasks {
 
     /**
      * Remove comments
-     *
      * @param \CodersLabBundle\Entity\Comment $comments
      */
     public function removeComment(\CodersLabBundle\Entity\Comment $comments) {
@@ -230,7 +215,6 @@ class Tasks {
 
     /**
      * Get comments
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments() {

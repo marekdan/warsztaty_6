@@ -6,8 +6,7 @@
 
 {% block panelTitle %}
     Task: {{ task.name }}
-    <a class="btn btn-default" href="{{ path('addComment', {'taskId':task.id}) }}">ADD
-        COMMENT</a>
+    <a class="btn btn-default" href="{{ path('addComment', {'taskId':task.id}) }}">ADD COMMENT</a>
 {% endblock %}
 
 {% block content %}
@@ -18,7 +17,8 @@
                     {{ comment.commentText }}
                 </td>
                 <td>
-                    <a class="btn btn-default" href="{{ path('deleteComment', {'commentId':comment.id, 'taskId':task.id}) }}">DELETE</a>
+                    <a class="btn btn-default"
+                       href="{{ path('deleteComment', {'commentId':comment.id, 'taskId':task.id}) }}">DELETE</a>
                 </td>
             </tr>
         {% else %}

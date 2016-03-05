@@ -123,7 +123,6 @@ class CategoryController extends Controller {
     public function showMyCategoriesAction($userId) {
         $repoUser = $this->getDoctrine()->getRepository('CodersLabBundle:User');
         $user = $repoUser->find($userId);
-
         $repoCategories = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $categories = $repoCategories->findByUsers($user);
 
@@ -137,7 +136,6 @@ class CategoryController extends Controller {
     public function showCategoryAction($categoryId, $which) {
         $repoCategory = $this->getDoctrine()->getRepository('CodersLabBundle:Category');
         $category = $repoCategory->find($categoryId);
-
         $repoTasks = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
         $tasks = $repoTasks->findBy(
             array('category' => $category->getId()),
@@ -147,14 +145,14 @@ class CategoryController extends Controller {
         $sortTasks = [];
         if ($which == 1) {
             foreach ($tasks as $task) {
-                if($task->getStatus() == 'To do')
-                $sortTasks[] = $task;
+                if ($task->getStatus() == 'To do')
+                    $sortTasks[] = $task;
             }
             $tasks = $sortTasks;
         }
         elseif ($which == 2) {
             foreach ($tasks as $task) {
-                if($task->getStatus() == 'Done')
+                if ($task->getStatus() == 'Done')
                     $sortTasks[] = $task;
             }
             $tasks = $sortTasks;

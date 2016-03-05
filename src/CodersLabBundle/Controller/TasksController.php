@@ -24,9 +24,11 @@ class TasksController extends Controller {
         $form = $this->createFormBuilder($task);
         $form->add('name', 'text');
         $form->add('description', 'text');
-        $form->add('priority', 'choice', ['label'    => 'Priority',
-                                          'multiple' => false,
-                                          'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
+        $form->add('priority', 'choice', [
+            'label'    => 'Priority',
+            'multiple' => false,
+            'choices'  => [1 => '1', 2 => '2', 3 => '3'
+            ]]);
         $form->add('date', 'date', [
             'input'  => 'datetime',
             'widget' => 'single_text',
@@ -81,12 +83,18 @@ class TasksController extends Controller {
         $form = $this->createFormBuilder($task);
         $form->add('name', 'text');
         $form->add('description', 'text');
-        $form->add('priority', 'choice', ['label'    => 'Priority',
-                                          'multiple' => false,
-                                          'choices'  => [1 => '1', 2 => '2', 3 => '3',]]);
-        $form->add('status', 'choice', ['label'    => 'Status',
-                                        'multiple' => false,
-                                        'choices'  => ['Done' => 'Done', 'To do' => 'To do']]);
+        $form->add('priority', 'choice', [
+            'label'    => 'Priority',
+            'multiple' => false,
+            'choices'  => [
+                1 => '1', 2 => '2', 3 => '3'
+            ]]);
+        $form->add('status', 'choice', [
+            'label'    => 'Status',
+            'multiple' => false,
+            'choices'  => [
+                'Done' => 'Done', 'To do' => 'To do'
+            ]]);
         $form->add('date', 'date', [
             'input'  => 'datetime',
             'widget' => 'single_text',
@@ -138,6 +146,7 @@ class TasksController extends Controller {
      */
     public function markAsDoneTaskAction(Tasks $task, $categoryId) {
         $task->setStatus('Done');
+
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 

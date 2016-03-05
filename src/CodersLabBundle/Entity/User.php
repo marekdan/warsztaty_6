@@ -34,7 +34,6 @@ class User extends BaseUser {
 
     /**
      * Add categories
-     *
      * @param \CodersLabBundle\Entity\Category $categories
      * @return User
      */
@@ -46,7 +45,6 @@ class User extends BaseUser {
 
     /**
      * Remove categories
-     *
      * @param \CodersLabBundle\Entity\Category $categories
      */
     public function removeCategory(\CodersLabBundle\Entity\Category $categories) {
@@ -55,7 +53,6 @@ class User extends BaseUser {
 
     /**
      * Get categories
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories() {

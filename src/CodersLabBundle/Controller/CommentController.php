@@ -71,7 +71,6 @@ class CommentController extends Controller {
     public function showCommentsAction($taskId) {
         $repoTask = $this->getDoctrine()->getRepository('CodersLabBundle:Tasks');
         $task = $repoTask->find($taskId);
-
         $repoComments = $this->getDoctrine()->getRepository('CodersLabBundle:Comment');
         $comments = $repoComments->findByTask($task);
 

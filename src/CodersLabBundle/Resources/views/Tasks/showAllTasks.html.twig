@@ -13,9 +13,9 @@
             <td>{{ task.priority }}</td>
             <td>{{ task.status }}</td>
             <td>{{ task.date|date('Y-m-d') }}</td>
-
             <td>
-                <a class="btn btn-default" href=" {{ path('showComments', {'taskId':task.id}) }}">{{ task.comments|length }} Comments</a>
+                <a class="btn btn-default"
+                   href=" {{ path('showComments', {'taskId':task.id}) }}">{{ task.comments|length }} Comments</a>
                 <a class="btn btn-default"
                    href=" {{ path('deleteTask', {'taskId':task.id, 'categoryId':categoryId}) }}">DELETE</a>
                 {% if (task.status == 'To do') %}
@@ -23,7 +23,6 @@
                        href=" {{ path('editTask', {'taskId':task.id, 'categoryId':categoryId}) }}">EDIT</a>
                 {% endif %}
             </td>
-
             <td>
                 {% if (task.status == 'To do') %}
                     <a class="btn btn-default"
@@ -31,7 +30,6 @@
                         Done</a>
                 {% endif %}
             </td>
-
         </tr>
     {% endfor %}
 </table>

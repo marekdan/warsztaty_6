@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Comment
- *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="CodersLabBundle\Entity\CommentRepository")
  */
@@ -15,7 +14,6 @@ class Comment {
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,14 +22,12 @@ class Comment {
 
     /**
      * @var string
-     *
      * @ORM\Column(name="commentText", type="text")
      */
     private $commentText;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
@@ -48,7 +44,6 @@ class Comment {
 
     /**
      * Get id
-     *
      * @return integer
      */
     public function getId() {
@@ -57,7 +52,6 @@ class Comment {
 
     /**
      * Set commentText
-     *
      * @param string $commentText
      * @return Comment
      */
@@ -69,7 +63,6 @@ class Comment {
 
     /**
      * Get commentText
-     *
      * @return string
      */
     public function getCommentText() {
@@ -78,7 +71,6 @@ class Comment {
 
     /**
      * Set date
-     *
      * @param \DateTime $date
      * @return Comment
      */
@@ -90,7 +82,6 @@ class Comment {
 
     /**
      * Get date
-     *
      * @return \DateTime
      */
     public function getDate() {
@@ -99,7 +90,6 @@ class Comment {
 
     /**
      * Set task
-     *
      * @param \CodersLabBundle\Entity\Tasks $task
      * @return Comment
      */
@@ -111,7 +101,6 @@ class Comment {
 
     /**
      * Get task
-     *
      * @return \CodersLabBundle\Entity\Tasks
      */
     public function getTask() {

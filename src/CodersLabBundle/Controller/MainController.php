@@ -30,4 +30,5 @@ dnia)
 
 - zaimplementuj funkcjonalność dodawania komentarzy
 - zaimplementuj funkcjonalność wyświetlenia ilości komentarzy przy każdym z zadań na liście
-- zaimplementuj funkcjonalność uniemożliwiającą edycję zakończonych zadań-->
+- zaimplementuj funkcjonalność uniemożliwiającą edycję zakończonych zadań
+-->

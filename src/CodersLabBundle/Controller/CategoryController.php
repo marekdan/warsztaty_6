@@ -143,14 +143,14 @@ class CategoryController extends Controller {
         );
 
         $sortTasks = [];
-        if ($which == 1) {
+        if ($which == 'todo') {
             foreach ($tasks as $task) {
                 if ($task->getStatus() == 'To do')
                     $sortTasks[] = $task;
             }
             $tasks = $sortTasks;
         }
-        elseif ($which == 2) {
+        elseif ($which == 'done') {
             foreach ($tasks as $task) {
                 if ($task->getStatus() == 'Done')
                     $sortTasks[] = $task;

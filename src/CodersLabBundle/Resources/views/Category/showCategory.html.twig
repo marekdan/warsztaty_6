@@ -20,13 +20,13 @@
     {% include 'CodersLabBundle:Tasks:showAllTasks.html.twig' with {'tasks': tasks, 'categoryId':category.id} %}
     <ul class="nav nav-pills">
         <li role="presentation">
-        <a href="{{ path('showCategory', {'categoryId':category.id, 'which':3}) }}"><strong>All</strong></a>
+        <a href="{{ path('showCategory', {'categoryId':category.id, 'which':'all'}) }}"><strong>All</strong></a>
         </li>
         <li role="presentation">
-            <a href="{{ path('showCategory', {'categoryId':category.id, 'which':1}) }}"><strong>To do</strong></a>
+            <a href="{{ path('showCategory', {'categoryId':category.id, 'which':'todo'}) }}"><strong>To do</strong></a>
         </li>
         <li role="presentation">
-            <a href="{{ path('showCategory', {'categoryId':category.id, 'which':2}) }}"><strong>Done</strong></a>
+            <a href="{{ path('showCategory', {'categoryId':category.id, 'which':'done'}) }}"><strong>Done</strong></a>
         </li>
 
     </ul>
